@@ -1,0 +1,24 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "seed": "node seeds/seed.js",
+    "watch": "nodemon server.js"
+  },
+  "author": "MarkJNap",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server-express": "^2.15.0",
+    "bcrypt": "^5.1.0",
+    "express": "^4.18.2",
+    "graphql": "^15.8.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
