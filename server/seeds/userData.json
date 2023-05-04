@@ -1,17 +1,20 @@
 [
     {
-        "userName": "Mark",
+        "username": "Mark",
         "email": "mark@test.com",
-        "password": "password1"
+        "password": "password1",
+        "stats": "stats"
     },
     {
-        "userName": "James",
+        "username": "James",
         "email": "james@test.com",
-        "password": "password1"
+        "password": "password1",
+        "stats": "stats"
     },
     {
-        "userName": "Frank",
+        "username": "Frank",
         "email": "frank@test.com",
-        "password": "password1"
+        "password": "password1",
+        "stats": "stats"
     }
 ]

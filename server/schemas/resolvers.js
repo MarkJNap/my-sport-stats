@@ -1,20 +1,37 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
-const { User } = require('../models');
+const { User, Stats, Sport } = require('../models');
 
 const resolvers = {
     Query: {
       users: async () => {
-        return await User.find({})
+        return await User.find({}).populate({
+          path: 'stats',
+          populate: 'sport'
+        })
+      },
+      
+      stats: async () => {
+        return await Stats.find({})
+      },
+
+      sport: async () => {
+        return await Sport.find({})
       },
 
       user: async (parent, args) => {
-        return await User.findById(args.id)
+        return await User.findById(args.id).populate({
+          path: 'stats',
+          populate: 'sport'
+        })
       },
 
       me: async (parent, args, context) => {
         if (context.user) {
-            return User.findById(context.user._id)
+            return User.findById(context.user._id).populate({
+              path: 'stats',
+              populate: 'sport'
+            })
         }
         throw new AuthenticationError("You need to be logged in!");
       },
@@ -46,6 +63,22 @@ const resolvers = {
         const token = signToken(user);
   
         return { token, user };
+      },
+      // TODO: Adjust for context
+      addStats: async (parent, args) => {
+        await User.findOneAndUpdate(
+          { _id: args.userId},
+          { $addToSet: { stats: args.input} },
+          { new: true}
+        )
+      },
+      // TODO: Adjust for context
+      deleteStats: async (parent, args) => {
+        await User.findOneAndUpdate(
+          {_id: args.userId},
+          { $pull: { stats: { _id: args.statsID } } },
+          { new: true}
+        )
       }
     }
   };
