@@ -67,19 +67,19 @@ db.once("open", async () => {
                 username: "Mark",
                 email: "mark@test.com",
                 password: "password1",
-                stats: [stats[0], stats[1]]
+                stats: [stats[0]._id, stats[1]._id]
             },
             {
                 username: "James",
                 email: "james@test.com",
                 password: "password1",
-                stats: stats[2]
+                stats: stats[2]._id
             },
             {
                 username: "Frank",
                 email: "frank@test.com",
                 password: "password1",
-                stats: stats[3]
+                stats: stats[3]._id
             }
         ])
         console.log("Users Seeded");

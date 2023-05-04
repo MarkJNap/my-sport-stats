@@ -22,7 +22,10 @@ const userSchema = new Schema({
       required: true,
       minlength: 8
     },
-    stats: [Stats.schema]
+    stats: [{
+      type: Schema.Types.ObjectId,
+      ref: "Stats",
+    }]
   });
   
   // set up pre-save middleware to create password
