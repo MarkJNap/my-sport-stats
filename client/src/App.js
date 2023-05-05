@@ -12,6 +12,7 @@ import './App.css';
 import Dashboard from "./pages/Dashboard";
 import Landing from "./pages/Landing";
 import Signup from "./pages/Signup";
+import Login from "./pages/Login";
 import Stats from "./pages/Stats";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -45,6 +46,7 @@ function App() {
           <div>
             <Routes>
               <Route path="/" element={<Landing />} />
+              <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/stats" element={<Stats />} />
               <Route path="/dashboard" element={<Dashboard />} />

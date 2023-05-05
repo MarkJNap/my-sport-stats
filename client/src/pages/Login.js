@@ -9,31 +9,25 @@ import {
   Message,
   Segment,
 } from "semantic-ui-react";
+// Base login/signup form layout from https://react.semantic-ui.com/layouts/login
 
-export default function Signup() {
+export default function Login() {
   return (
     <section className="">
       <Grid
         textAlign="center"
-        style={{ height: "80vh" }}
+        style={{ height: "100vh" }}
         verticalAlign="middle">
         <Grid.Column style={{ maxWidth: 550, height: 500 }}>
           <Header as="h2" color="blue" textAlign="center">
-            Create an account
+            Login
           </Header>
           <Form size="large">
             <Segment stacked textAlign="left">
               <Form.Input
                 fluid
-                label="Username"
-                icon="user"
-                iconPosition="left"
-                placeholder="User"
-              />
-              <Form.Input
-                fluid
                 label="Email"
-                icon="mail"
+                icon="user"
                 iconPosition="left"
                 placeholder="E-mail address"
               />
@@ -46,12 +40,12 @@ export default function Signup() {
                 type="password"
               />
               <Button color="green" size="large">
-                Sign Up
+                Login
               </Button>
             </Segment>
           </Form>
           <Message>
-            Already have an account? <Link to="/login">Login Here</Link>
+            Want to create an account? <Link to="/signup">Sign Up</Link>
           </Message>
         </Grid.Column>
       </Grid>

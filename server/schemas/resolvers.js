@@ -74,17 +74,13 @@ const resolvers = {
         }
         throw new AuthenticationError('Not logged in');
       },
-      // TODO: Adjust to delete better
       deleteStats: async (parent, args, context) => {
         if (context.user) {
+          await User.findByIdAndUpdate(context.user._id,
+            { $pull: { stats: args.statsId } },
+            { new: true}
+          )
           return await Stats.findByIdAndDelete(args.statsId)
-          // TODO: Finish deleting the stats
-          // return await User.findByIdAndUpdate(context.user._id,
-          //   { $pull: { stats: args.statsId } },
-          //   { new: true},
-          //   console.log(args),
-          //   console.log(args.statsId)
-          // )
         }
         throw new AuthenticationError('Not logged in');
       }
@@ -92,26 +88,3 @@ const resolvers = {
   };
   
   module.exports = resolvers;
-  
-
-// Example for handling delete
-  // deleteVideo(req, res) {
-  //   Video.findOneAndRemove({ _id: req.params.videoId })
-  //     .then((video) =>
-  //       !video
-  //         ? res.status(404).json({ message: 'No video with this id!' })
-  //         : User.findOneAndUpdate(
-  //             { videos: req.params.videoId },
-  //             { $pull: { videos: req.params.videoId } },
-  //             { new: true }
-  //           )
-  //     )
-  //     .then((user) =>
-  //       !user
-  //         ? res
-  //             .status(404)
-  //             .json({ message: 'Video created but no user with this id!' })
-  //         : res.json({ message: 'Video successfully deleted!' })
-  //     )
-  //     .catch((err) => res.status(500).json(err));
-  // },
