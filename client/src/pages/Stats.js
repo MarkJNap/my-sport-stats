@@ -7,3 +7,5 @@ export default function Stats() {
         </div>
     )
 }
+// Example for showing Date 
+// {new Date(parseInt(order.purchaseDate)).toLocaleDateString()}

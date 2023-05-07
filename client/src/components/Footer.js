@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     Container,
-    Image,
+    // Image,
     List,
     Segment,
   } from 'semantic-ui-react'
@@ -11,7 +11,7 @@ export default function Footer() {
     return (
         <Segment vertical style={{ margin: '3em 0em 0em', padding: '2em 0em' }}>
         <Container textAlign='center'>
-          <Image centered size='mini' src='/logo.png' />
+          {/* <Image centered size='mini' src='/logo.png' /> */}
           <List horizontal divided link size='large'>
             <List.Item>
               Made by Mark Napolitano
