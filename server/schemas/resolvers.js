@@ -12,7 +12,9 @@ const resolvers = {
       },
       
       stats: async () => {
-        return await Stats.find({})
+        return await Stats.find({}).populate(
+          'sport'
+        )
       },
 
       sport: async () => {

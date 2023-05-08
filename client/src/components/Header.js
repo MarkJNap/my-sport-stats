@@ -12,16 +12,18 @@ export default function Header() {
         <Link to="/">App Name!</Link>
       </Menu.Item>
       <Menu.Menu position="right">
-        <Menu.Item>
-          <Link to="/stats">Stats</Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Link to="/dashboard">Dashboard</Link>
-        </Menu.Item>
         {Auth.loggedIn() ? (
-          <Menu.Item onClick={Auth.logout}>
-            <Link to="/">Logout</Link>
-          </Menu.Item>
+          <>
+            <Menu.Item>
+              <Link to="/stats">Stats</Link>
+            </Menu.Item>
+            <Menu.Item>
+              <Link to="/dashboard">Dashboard</Link>
+            </Menu.Item>
+            <Menu.Item onClick={Auth.logout}>
+              <Link to="/">Logout</Link>
+            </Menu.Item>
+          </>
         ) : (
           <Menu.Item>
             <Link to="/login">Login</Link>

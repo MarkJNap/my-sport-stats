@@ -1,6 +1,5 @@
 const db = require("../config/connection");
 const { User, Stats, Sport } = require("../models/");
-// const userData = require("./userData.json");
 
 db.once("open", async () => {
     try {
