@@ -13,12 +13,10 @@ export const QUERY_ME = gql`
         _id
         creationDate
         totalPoints
-        minutes
         rebounds
         assists
         steals
         turnovers
-        threePointMade
         fouls
         sport {
           _id
@@ -39,12 +37,10 @@ export const QUERY_USER = gql`
         _id
         creationDate
         totalPoints
-        minutes
         rebounds
         assists
         steals
         turnovers
-        threePointMade
         fouls
         sport {
           _id
@@ -61,13 +57,15 @@ export const QUERY_STATS = gql`
       _id
       creationDate
       totalPoints
-      minutes
       rebounds
       assists
       steals
       turnovers
-      threePointMade
       fouls
+      userId {
+        _id
+        username
+      }
       sport {
         _id
         name

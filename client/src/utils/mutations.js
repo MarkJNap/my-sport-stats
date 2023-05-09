@@ -34,12 +34,11 @@ export const ADD_NEWSTATS = gql`
                 _id
                 creationDate
                 totalPoints
-                minutes
                 rebounds
                 assists
                 steals
                 turnovers
-                threePointMade
+                
                 fouls
                 sport {
                     name

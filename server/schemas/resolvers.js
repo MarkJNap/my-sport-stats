@@ -12,9 +12,10 @@ const resolvers = {
       },
       
       stats: async () => {
-        return await Stats.find({}).populate(
-          'sport'
-        )
+        return await Stats.find({})
+        .populate('sport')
+        .populate('userId')
+
       },
 
       sport: async () => {
@@ -66,9 +67,14 @@ const resolvers = {
   
         return { token, user };
       },
-      newStats: async (parent, args, context) => {
+      newStats: async (parent, { input }, context) => {
         if (context.user) {
-          const newStats = await Stats.create(args.input)
+          console.log(input);
+          console.log(context.user._id);
+          const newStats = await Stats.create( {
+            ...input, 
+            userId: context.user._id, 
+          } )
           console.log(newStats);
           return await User.findByIdAndUpdate(context.user._id,
             { $addToSet: { stats: { _id: newStats._id } } },

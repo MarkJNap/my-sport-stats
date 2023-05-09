@@ -12,10 +12,6 @@ const statsSchema = new Schema({
     min: 0,
   },
 
-  minutes: {
-    type: String,
-  },
-
   rebounds: {
     type: Number,
     min: 0,
@@ -36,19 +32,19 @@ const statsSchema = new Schema({
     min: 0,
   },
 
-  threePointMade: {
-    type: Number,
-    min: 0,
-  },
-
   fouls: {
     type: Number,
     min: 0,
   },
 
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
+
   sport: {
-      type: Schema.Types.ObjectId,
-      ref: "Sport",
+    type: Schema.Types.ObjectId,
+    ref: "Sport",
   },
 });
 

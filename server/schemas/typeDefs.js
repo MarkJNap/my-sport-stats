@@ -11,13 +11,12 @@ const typeDefs = gql`
     _id: ID
     creationDate: String!
     totalPoints: Int
-    minutes: String
     rebounds: Int
     assists: Int
     steals: Int
     turnovers: Int
-    threePointMade: Int
     fouls: Int
+    userId: User
     sport: Sport
   }
 
@@ -44,20 +43,19 @@ const typeDefs = gql`
 
   input addStatsInput {
     totalPoints: Int
-    minutes: String
     rebounds: Int
     assists: Int
     steals: Int
     turnovers: Int
-    threePointMade: Int
     fouls: Int
+    userId: String
     sport: String
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    newStats(input: addStatsInput!): User
+    newStats(input: addStatsInput!): Stats
     deleteStats(statsId: ID!): Stats
   }
 

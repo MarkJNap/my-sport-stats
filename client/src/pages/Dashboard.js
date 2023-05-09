@@ -54,7 +54,7 @@ export default function Dashboard() {
                 Most recent sports
               </Header>
               <Segment>
-                {user.stats.slice(0,6).map((stat) => (
+                {user.stats.toReversed().slice(0,6).map((stat) => (
                     <p key={stat._id} style={{ fontSize: "1.33em" }}> 
                         {new Date(parseInt(stat.creationDate)).toLocaleDateString()} | {stat.sport.name}
                     </p>

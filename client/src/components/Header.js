@@ -9,7 +9,7 @@ export default function Header() {
     // OPTION: fixed="top" to fix the header in place
     <Menu size="massive" borderless fixed="top">
       <Menu.Item>
-        <Link to="/">App Name!</Link>
+        <Link to="/">MySportStats</Link>
       </Menu.Item>
       <Menu.Menu position="right">
         {Auth.loggedIn() ? (
