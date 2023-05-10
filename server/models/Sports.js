@@ -9,6 +9,6 @@ const sportSchema = new Schema({
   },
 });
 
-const Sport = mongoose.model("Sport", sportSchema);
+const Sports = mongoose.model("Sports", sportSchema);
 
-module.exports = Sport;
+module.exports = Sports;

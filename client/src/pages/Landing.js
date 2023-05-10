@@ -23,7 +23,6 @@ export default function Landing() {
 
     const { loading, data } = useQuery(QUERY_STATS);
     const stats = data?.stats || []
-    // console.log(data);
 
     return (
         <div>
@@ -44,9 +43,10 @@ export default function Landing() {
                                     </div>
                                 ) : (
                                     <div>
+                                        {/* TODO: Change displayed stats based on sport */}
                                         {stats.toReversed().slice(0,6).map((stat) => (
                                         <p key={stat._id} style={{ fontSize: "1.33em" }}>
-                                            {stat.userId.username}| {stat.sport.name} 
+                                            {stat.userId.username}| {stat.sports.name} 
                                             {stat.totalPoints ? (
                                                 <>
                                                 | Points: {stat.totalPoints} 

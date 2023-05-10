@@ -20,7 +20,7 @@ export default function Header() {
             <Menu.Item>
               <Link to="/dashboard">Dashboard</Link>
             </Menu.Item>
-            <Menu.Item onClick={Auth.logout}>
+            <Menu.Item as={"li"} onClick={Auth.logout}>
               <Link to="/">Logout</Link>
             </Menu.Item>
           </>

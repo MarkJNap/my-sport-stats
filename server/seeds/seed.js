@@ -1,10 +1,10 @@
 const db = require("../config/connection");
-const { User, Stats, Sport } = require("../models/");
+const { User, Stats, Sports } = require("../models/");
 
 db.once("open", async () => {
     try {
-        await Sport.deleteMany()
-        const sports = await Sport.insertMany([
+        await Sports.deleteMany()
+        const sports = await Sports.insertMany([
             { name: "Basketball"},
             { name: "AFL"},
             { name: "Cricket"}
@@ -21,7 +21,7 @@ db.once("open", async () => {
                 turnovers: 1,
                 fouls: 1,
                 userId: null,
-                sport: sports[0]._id
+                sports: sports[0]._id
             },
             {
                 totalPoints: 2,
@@ -31,7 +31,7 @@ db.once("open", async () => {
                 turnovers: 2,
                 fouls: 2,
                 userId: null,
-                sport: sports[0]._id
+                sports: sports[0]._id
             },
             {
                 totalPoints: 3,
@@ -41,17 +41,69 @@ db.once("open", async () => {
                 turnovers: 3,
                 fouls: 3,
                 userId: null,
-                sport: sports[0]._id
+                sports: sports[0]._id
+            },
+
+            {
+                goals: 4,
+                behinds: 4,
+                disposals: 4,
+                tackles: 4,
+                marks: 4,
+                kicks: 4,
+                userId: null,
+                sports: sports[1]._id
             },
             {
-                totalPoints: 4,
-                rebounds: 4,
-                assists: 4,
-                steals: 4,
-                turnovers: 4,
-                fouls: 4,
+                goals: 5,
+                behinds: 5,
+                disposals: 5,
+                tackles: 5,
+                marks: 5,
+                kicks: 5,
                 userId: null,
-                sport: sports[0]._id
+                sports: sports[1]._id
+            },
+            {
+                goals: 6,
+                behinds: 6,
+                disposals: 6,
+                tackles: 6,
+                marks: 6,
+                kicks: 6,
+                userId: null,
+                sports: sports[1]._id
+            },
+
+            {
+                runs: 7,
+                ballsFaced: 7,
+                sixes: 7,
+                overs: 7,
+                wickets: 7,
+                runsGiven: 7,
+                userId: null,
+                sports: sports[2]._id
+            },            
+            {
+                runs: 8,
+                ballsFaced: 8,
+                sixes: 8,
+                overs: 8,
+                wickets: 8,
+                runsGiven: 8,
+                userId: null,
+                sports: sports[2]._id
+            },            
+            {
+                runs: 9,
+                ballsFaced: 9,
+                sixes: 9,
+                overs: 9,
+                wickets: 9,
+                runsGiven: 9,
+                userId: null,
+                sports: sports[2]._id
             },
         ])
         console.log("Stats Seeded");
@@ -68,13 +120,13 @@ db.once("open", async () => {
                 username: "James",
                 email: "james@test.com",
                 password: "password1",
-                stats: stats[2]._id
+                stats: [stats[2]._id, stats[3]._id, stats[4]._id]
             },
             {
                 username: "Frank",
                 email: "frank@test.com",
                 password: "password1",
-                stats: stats[3]._id
+                stats: [stats[5]._id, stats[6]._id, stats[7]._id, stats[8]._id]
             }
         ])
         console.log("Users Seeded");
@@ -104,11 +156,41 @@ db.once("open", async () => {
                     userId: james._id
                 }}
             )
+            await Stats.findOneAndUpdate( 
+                { _id: james.stats[1] },
+                { $set: {
+                    userId: james._id
+                }}
+            )
+            await Stats.findOneAndUpdate( 
+                { _id: james.stats[2] },
+                { $set: {
+                    userId: james._id
+                }}
+            )
             const frank = await User.findOne({
                 username: "Frank"
             })
             await Stats.findOneAndUpdate( 
                 { _id: frank.stats[0] },
+                { $set: {
+                    userId: frank._id
+                }}
+            )
+            await Stats.findOneAndUpdate( 
+                { _id: frank.stats[1] },
+                { $set: {
+                    userId: frank._id
+                }}
+            )
+            await Stats.findOneAndUpdate( 
+                { _id: frank.stats[2] },
+                { $set: {
+                    userId: frank._id
+                }}
+            )
+            await Stats.findOneAndUpdate( 
+                { _id: frank.stats[3] },
                 { $set: {
                     userId: frank._id
                 }}

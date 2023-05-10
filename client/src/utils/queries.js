@@ -1,7 +1,6 @@
 import { gql } from "@apollo/client";
 
 // users: [User]
-// sport: [Sport]
 
 export const QUERY_ME = gql`
   query me {
@@ -18,7 +17,19 @@ export const QUERY_ME = gql`
         steals
         turnovers
         fouls
-        sport {
+        goals
+        behinds
+        disposals
+        tackles
+        marks
+        kicks
+        runs
+        ballsFaced
+        sixes
+        overs
+        wickets
+        runsGiven
+        sports {
           _id
           name
         }
@@ -42,7 +53,19 @@ export const QUERY_USER = gql`
         steals
         turnovers
         fouls
-        sport {
+        goals
+        behinds
+        disposals
+        tackles
+        marks
+        kicks
+        runs
+        ballsFaced
+        sixes
+        overs
+        wickets
+        runsGiven
+        sports {
           _id
           name
         }
@@ -62,14 +85,35 @@ export const QUERY_STATS = gql`
       steals
       turnovers
       fouls
+      goals
+      behinds
+      disposals
+      tackles
+      marks
+      kicks
+      runs
+      ballsFaced
+      sixes
+      overs
+      wickets
+      runsGiven
       userId {
         _id
         username
       }
-      sport {
+      sports {
         _id
         name
       }
     }
   }
 `;
+
+export const QUERY_SPORT = gql`
+  query sport($name: String!) {
+    sport(name: $name) {
+    _id
+    name
+    }
+  }
+`

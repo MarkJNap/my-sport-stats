@@ -25,26 +25,31 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_NEWSTATS = gql`
-    mutation newStats($input: addStatsInput) {
+    mutation newStats($input: addStatsInput!) {
         newStats(input: $input) {
-            _id
-            username
-            email
-            stats {
                 _id
-                creationDate
                 totalPoints
                 rebounds
                 assists
                 steals
                 turnovers
-                
                 fouls
-                sport {
+                goals
+                behinds
+                disposals
+                tackles
+                marks
+                kicks
+                runs
+                ballsFaced
+                sixes
+                overs
+                wickets
+                runsGiven
+                sports {
                     name
                 }
             }
-        }
     }
 `
 

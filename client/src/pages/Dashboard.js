@@ -3,6 +3,9 @@ import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
+import BasketballForm from "../components/BasketballForm";
+import AFLForm from "../components/AFLForm";
+import CricketForm from "../components/CricketForm";
 import {
     Button,
     // Container,
@@ -10,17 +13,19 @@ import {
     Header,
     // Image,
     Segment,
-    Form,
+    // Form,
     // Message,
     // Select
   } from 'semantic-ui-react'
 
-
 export default function Dashboard() {
-    const [handleFormType, setHandleFormType] = useState('')
+    const [formType, setFormType] = useState('')
 
+    // Changes the formType depending on the event
     const handleSportForm = (event) => {
-        const { key, value } = event.target
+      event.preventDefault();
+      const { value } = event.target
+      setFormType(value)
     }
 
   const { _id: userParam } = useParams();
@@ -31,20 +36,31 @@ export default function Dashboard() {
 
   const user = data?.me || data?.user || {};
 
+  // If the user is not authenticated/logged in redirect to the login page
   if (!(Auth.loggedIn())) {
     return <Navigate to="/login" />
   }
 
+  // Displayed if the page is still loading the user data
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  const options = [
-    { key: 'Basketball', text: 'Basketball', value: 'basketball' },
-    { key: 'AFL', text: 'AFL', value: 'afl' },
-    { key: 'Cricket', text: 'Cricket', value: 'cricket' },
-  ]
-
+  // Loads the appropriate form based on the formType
+  const FormLoad = () => {
+    if (formType === 'Basketball') {
+      return <BasketballForm />
+    } else if (formType === 'AFL') {
+      return <AFLForm />
+    } else if (formType === 'Cricket') {
+      return <CricketForm />
+    } else {
+      return <Segment>
+        <Header as="h1">Please select a sport to load a form</Header>
+      </Segment>
+    }
+}
+    
   return (
       <Segment style={{ padding: "8em 0em", height: "100vh" }} vertical>
         <Grid container stackable verticalAlign="middle">
@@ -55,52 +71,29 @@ export default function Dashboard() {
               </Header>
               <Segment>
                 {user.stats.toReversed().slice(0,6).map((stat) => (
-                    <p key={stat._id} style={{ fontSize: "1.33em" }}> 
-                        {new Date(parseInt(stat.creationDate)).toLocaleDateString()} | {stat.sport.name}
+                     <p key={stat._id} style={{ fontSize: "1.33em" }}>
+                         {new Date(parseInt(stat.creationDate)).toLocaleDateString()} | {stat.sports.name}
                     </p>
                 ))}
               </Segment>
             </Grid.Column>
-            <Grid.Column floated="right" width={8} textAlign="center">
-              <section className="">
+            <Grid.Column floated="right" width={10} textAlign="center" style={{ padding: '4em 0em 0em 0em'}}>
                 <Grid textAlign="center" verticalAlign="middle">
                   <Grid.Column >
-                    <Form size="large">
-                      <Segment stacked textAlign="left">
-                        <Form.Select
-                            width={6}
-                            label='Pick a sport:'
-                            options={options}
-                            // value={}
-                            placeholder='Sport'
-                            onChange={handleSportForm}
-                        />
-                        <Form.Input
-                          fluid
-                          label="Email"
-                          icon="user"
-                          iconPosition="left"
-                          placeholder="E-mail address"
-                          type="email"
-                          name="email"
-                        />
-                        <Form.Input
-                          fluid
-                          label="Password"
-                          icon="lock"
-                          iconPosition="left"
-                          placeholder="*********"
-                          type="password"
-                          name="password"
-                        />
-                        <Button color="green" size="large">
-                          Submit
+                      <Segment textAlign="center">
+                         <Button  color="orange" size="medium" value="Basketball" onClick={handleSportForm}>
+                          Basketball
+                        </Button>
+                        <Button  color="green" size="medium" value="AFL" onClick={handleSportForm}>
+                          AFL
+                        </Button>
+                        <Button  color="yellow" size="medium" value="Cricket" onClick={handleSportForm}>
+                          Cricket
                         </Button>
                       </Segment>
-                    </Form>
+                      {FormLoad()} 
                   </Grid.Column>
                 </Grid>
-              </section>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row></Grid.Row>

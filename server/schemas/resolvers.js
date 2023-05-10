@@ -1,31 +1,35 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
-const { User, Stats, Sport } = require('../models');
+const { User, Stats, Sports } = require('../models');
 
 const resolvers = {
     Query: {
       users: async () => {
         return await User.find({}).populate({
           path: 'stats',
-          populate: 'sport'
+          populate: 'sports'
         })
       },
       
       stats: async () => {
         return await Stats.find({})
-        .populate('sport')
+        .populate('sports')
         .populate('userId')
 
       },
 
-      sport: async () => {
-        return await Sport.find({})
+      sports: async () => {
+        return await Sports.find({})
+      },
+
+      sport: async (parent, { name }) => {
+        return await Sports.findOne({ name: name })
       },
 
       user: async (parent, args) => {
         return await User.findById(args.id).populate({
           path: 'stats',
-          populate: 'sport'
+          populate: 'sports'
         })
       },
 
@@ -33,7 +37,7 @@ const resolvers = {
         if (context.user) {
             return User.findById(context.user._id).populate({
               path: 'stats',
-              populate: 'sport'
+              populate: 'sports'
             })
         }
         throw new AuthenticationError("You need to be logged in!");
@@ -52,15 +56,13 @@ const resolvers = {
         const user = await User.findOne({ email });
   
         if (!user) {
-            // Change to 'Incorrect credentials' after testing
-          throw new AuthenticationError('Incorrect user');
+          throw new AuthenticationError('Incorrect credentials');
         }
   
         const correctPw = await user.isCorrectPassword(password);
   
         if (!correctPw) {
-            // Change to 'Incorrect credentials' after testing
-          throw new AuthenticationError('Incorrect password');
+          throw new AuthenticationError('Incorrect credentials');
         }
   
         const token = signToken(user);

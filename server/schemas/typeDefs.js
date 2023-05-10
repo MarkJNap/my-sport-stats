@@ -1,8 +1,7 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
-# The sport stats are just for basketball atm
-  type Sport {
+  type Sports {
     _id: ID
     name: String!
   }
@@ -10,14 +9,26 @@ const typeDefs = gql`
   type Stats {
     _id: ID
     creationDate: String!
-    totalPoints: Int
-    rebounds: Int
-    assists: Int
-    steals: Int
-    turnovers: Int
-    fouls: Int
+    totalPoints: String
+    rebounds: String
+    assists: String
+    steals: String
+    turnovers: String
+    fouls: String
+    goals: String
+    behinds: String
+    disposals: String
+    tackles: String
+    marks: String
+    kicks: String
+    runs: String
+    ballsFaced: String
+    sixes: String
+    overs: String
+    wickets: String
+    runsGiven: String
     userId: User
-    sport: Sport
+    sports: Sports
   }
 
   type User {
@@ -38,18 +49,32 @@ const typeDefs = gql`
     me: User
     user(id: ID!): User
     stats: [Stats]
-    sport: [Sport]
+    sports: [Sports]
+    sport(name: String!): Sports
+
   }
 
   input addStatsInput {
-    totalPoints: Int
-    rebounds: Int
-    assists: Int
-    steals: Int
-    turnovers: Int
-    fouls: Int
+    totalPoints: String
+    rebounds: String
+    assists: String
+    steals: String
+    turnovers: String
+    fouls: String
+    goals: String
+    behinds: String
+    disposals: String
+    tackles: String
+    marks: String
+    kicks: String
+    runs: String
+    ballsFaced: String
+    sixes: String
+    overs: String
+    wickets: String
+    runsGiven: String
     userId: String
-    sport: String
+    sports: String
   }
 
   type Mutation {
