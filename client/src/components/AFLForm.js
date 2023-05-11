@@ -7,7 +7,7 @@ import {
   // Image,
   Segment,
   Form,
-  // Message,
+  Message,
   // Select
 } from 'semantic-ui-react'
 import { useMutation, useQuery } from '@apollo/client';
@@ -21,6 +21,9 @@ export default function AFLForm () {
     goals: '', behinds: '', disposals: '', tackles: '', marks: '', kicks: '',
   })
 
+  const [formError, setFormError] = useState(false)
+  const [formSuccess, setFormSuccess] = useState(false)
+
   // Query the sport with the name AFL
   const { data:sportData } = useQuery(QUERY_SPORT, { variables: { name: "AFL" }});
   
@@ -29,6 +32,8 @@ export default function AFLForm () {
   // When the user changes the data on the form update the formState
   const handleChange = (event) => {
     const { name, value } = event.target;
+    setFormError(false)
+    setFormSuccess(false)
     setFormState({
       ...formState,
       [name]: value,
@@ -45,9 +50,28 @@ export default function AFLForm () {
         });
       } catch (e) {
         console.log(e);
+        setFormError(true)
+        return
       }
+      setFormState({
+        goals: '', behinds: '', disposals: '', tackles: '', marks: '', kicks: '',
+      })
+      setFormSuccess(true)
     }
   };
+
+  // If the submit fails display the error message
+  const formErrorFunc = () => {
+    if (formError) {
+      return <Message color="red">
+      There was an error, please refresh and try again
+    </Message>
+    } else if (formSuccess) {
+      return <Message color="green">
+      Stats succesfully submitted!
+    </Message>
+    }
+  }
 
   return (
     <Form size="large" id="AFL" onSubmit={handleFormSubmit}>
@@ -66,6 +90,7 @@ export default function AFLForm () {
         <Button color="green" size="large" type='submit'>
           Submit
         </Button>
+        {formErrorFunc()}
       </Segment>
     </Form>
   )

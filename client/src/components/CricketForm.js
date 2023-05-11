@@ -7,7 +7,7 @@ import {
   // Image,
   Segment,
   Form,
-  // Message,
+  Message,
   // Select
 } from 'semantic-ui-react'
 import { useMutation, useQuery } from '@apollo/client';
@@ -19,12 +19,17 @@ export default function CricketForm () {
     runs: '', ballsFaced: '', sixes: '', overs: '', wickets: '', runsGiven: ''
   })
 
+  const [formError, setFormError] = useState(false)
+  const [formSuccess, setFormSuccess] = useState(false)
+
   const { data:sportData } = useQuery(QUERY_SPORT, { variables: { name: "Cricket" }});
   
   const [newStats] = useMutation(ADD_NEWSTATS)
 
   const handleChange = (event) => {
     const { name, value } = event.target;
+    setFormError(false)
+    setFormSuccess(false)
     setFormState({
       ...formState,
       [name]: value,
@@ -40,12 +45,27 @@ export default function CricketForm () {
         });
       } catch (e) {
         console.log(e);
+        setFormError(true)
+        return
       }
+      setFormState({
+        runs: '', ballsFaced: '', sixes: '', overs: '', wickets: '', runsGiven: '',
+      })
+      setFormSuccess(true)
     }
-    setFormState({
-      runs: '', ballsFaced: '', sixes: '', overs: '', wickets: '', runsGiven: ''
-    })
   };
+
+  const formErrorFunc = () => {
+    if (formError) {
+      return <Message color="red">
+      There was an error, please refresh and try again
+    </Message>
+    } else if (formSuccess) {
+      return <Message color="green">
+      Stats succesfully submitted!
+    </Message>
+    }
+  }
 
   return (
     <Form size="large" id="Cricket" onSubmit={handleFormSubmit}>
@@ -64,6 +84,7 @@ export default function CricketForm () {
         <Button color="green" size="large">
           Submit
         </Button>
+        {formErrorFunc()}
       </Segment>
     </Form>
   )

@@ -29,6 +29,9 @@ export const QUERY_ME = gql`
         overs
         wickets
         runsGiven
+        userId {
+        _id
+        }
         sports {
           _id
           name
@@ -65,6 +68,10 @@ export const QUERY_USER = gql`
         overs
         wickets
         runsGiven
+        userId {
+        _id
+        username
+        }
         sports {
           _id
           name

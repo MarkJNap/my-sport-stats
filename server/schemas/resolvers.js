@@ -71,13 +71,10 @@ const resolvers = {
       },
       newStats: async (parent, { input }, context) => {
         if (context.user) {
-          console.log(input);
-          console.log(context.user._id);
           const newStats = await Stats.create( {
             ...input, 
             userId: context.user._id, 
           } )
-          console.log(newStats);
           return await User.findByIdAndUpdate(context.user._id,
             { $addToSet: { stats: { _id: newStats._id } } },
             { new: true })

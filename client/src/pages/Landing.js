@@ -24,6 +24,43 @@ export default function Landing() {
     const { loading, data } = useQuery(QUERY_STATS);
     const stats = data?.stats || []
 
+    const statLoad = () => {
+        if (stats) {
+          return (
+            <>
+            {stats.toReversed().slice(0,4).map((stat) => (
+            <Segment key={stat._id} style={{ fontSize: "1.33em" }}>
+              {new Date(parseInt(stat.creationDate)).toLocaleDateString()} | {stat.sports.name} | {stat.userId.username} |
+              {stat.sports.name === "Basketball" ? (<> {basketballStats(stat)}</>) : (<></>)}
+              {stat.sports.name === "AFL" ? (<> {aflStats(stat)}</>) : (<></>)}
+              {stat.sports.name === "Cricket" ? (<> {cricketStats(stat)}</>) : (<></>)}
+            </Segment>
+             ))}
+            </>
+          )
+    }}
+
+    const basketballStats = (stat) => {
+        const eachStat = stat
+        return (
+          <>Points {eachStat.totalPoints}  | Assists: {eachStat.assists} | Steals: {eachStat.steals} </>
+        )
+      }
+    
+      const cricketStats = (stat) => {
+        const eachStat = stat
+        return (
+          <>Runs {eachStat.runs}  | Sixes: {eachStat.sixes} | Wickets: {eachStat.wickets} </>
+        )
+    
+      }
+      const aflStats = (stat) => {
+        const eachStat = stat
+        return (
+          <>Goals: {eachStat.goals} | Disposals: {eachStat.disposals} | Marks: {eachStat.marks}</>
+        )
+      }
+
     return (
         <div>
             <Header as='h1' style={{ fontSize: '2em', padding: '4em 0em 2em 3em'}}>
@@ -43,34 +80,7 @@ export default function Landing() {
                                     </div>
                                 ) : (
                                     <div>
-                                        {/* TODO: Change displayed stats based on sport */}
-                                        {stats.toReversed().slice(0,6).map((stat) => (
-                                        <p key={stat._id} style={{ fontSize: "1.33em" }}>
-                                            {stat.userId.username}| {stat.sports.name} 
-                                            {stat.totalPoints ? (
-                                                <>
-                                                | Points: {stat.totalPoints} 
-                                                </>
-                                            ) : (
-                                            <>
-                                            
-                                            </>)}
-                                            {stat.assists ? (
-                                                <>
-                                                | Assists: {stat.assists}
-                                                </>
-                                            ) : (
-                                            <>
-                                            </>)}
-                                            {stat.rebounds ? (
-                                                <>
-                                                | Rebounds: {stat.rebounds}
-                                                </>
-                                            ) : (
-                                            <>
-                                            </>)}
-                                        </p>
-                                        ))} 
+                                        {statLoad()}                                        
                                     </div>
                                 )}                             
                             </Segment>
