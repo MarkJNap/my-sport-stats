@@ -19,7 +19,7 @@ This site is nice and simple for a user. They need to just create a new account 
 Demo Gif:
 ![Demo Gif](client/src/assets/MySportStatsDemo.gif)
 
-## Futire Development
+## Future Development
 
 * Implementation of filters on the stats page for the user to sort by Sport, for view the highest goals scored.
 * Fix the styling to be consistent and add colours.
