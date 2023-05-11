@@ -22,7 +22,7 @@ This site
 
 
 Demo Gif:
-![Demo Gif]()
+![Demo Gif](client/src/assets/MySportStatsDemo.gif)
 
 
 ## Credits
