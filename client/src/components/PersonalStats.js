@@ -18,12 +18,12 @@ import { DELETE_STATS } from '../utils/mutations'
 
 export default function PersonalStats () {
 
-  const { loading, error:QueryError, data } = useQuery(QUERY_ME);
+  const { loading, data } = useQuery(QUERY_ME);
   // console.log(loading);
   // console.log(QueryError);
   // console.log(data);
 
-  const [deleteStat, { error }] = useMutation(DELETE_STATS);
+  const [deleteStat] = useMutation(DELETE_STATS);
 
   const deleteStatBtn = async (event) => {
     event.preventDefault();

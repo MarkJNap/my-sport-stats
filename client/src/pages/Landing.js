@@ -14,6 +14,8 @@ import { useQuery } from '@apollo/client';
 import { QUERY_STATS } from '../utils/queries';
 // import bballimg from "../assets/basketball.jpg"
 import bballcourtimg from "../assets/basketball-court.jpg"
+import appname from "../assets/AppName.png"
+
 
 // Base layout from https://react.semantic-ui.com/layouts/homepage/
 // Images "https://www.freepik.com/free-photo/basketball-hardwood-court-floor_8364601.htm#query=basketball&position=8&from_view=search&track=sph" Image by master1305 on Freepik
@@ -63,9 +65,7 @@ export default function Landing() {
 
     return (
         <div>
-            <Header as='h1' style={{ fontSize: '2em', padding: '4em 0em 2em 3em'}}>
-                My Sport Stats
-            </Header>
+            <Image style={{ padding: '4em 0em 2em 3em'}} size="large" src={appname} />
             <Segment style={{ padding: '1em 0em' }} vertical>
                 <Grid container stackable verticalAlign='middle'>
                     <Grid.Row>
