@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Button,
   // Container,
@@ -9,14 +9,14 @@ import {
   Form,
   Message,
   // Select
-} from 'semantic-ui-react'
-import { useMutation, useQuery } from '@apollo/client';
-import { QUERY_SPORT } from '../utils/queries';
-import { ADD_NEWSTATS } from '../utils/mutations';
+} from "semantic-ui-react"
+import { useMutation, useQuery } from "@apollo/client";
+import { QUERY_SPORT } from "../utils/queries";
+import { ADD_NEWSTATS } from "../utils/mutations";
 
 export default function BasketballForm () {
   const [formState, setFormState] = useState({ 
-    totalPoints: '', rebounds: '', assists: '', steals: '', turnovers: '', fouls: '',
+    totalPoints: "", rebounds: "", assists: "", steals: "", turnovers: "", fouls: "",
   })
 
   const [formError, setFormError] = useState(false)
@@ -49,7 +49,7 @@ export default function BasketballForm () {
         return
       }
       setFormState({
-        totalPoints: '', rebounds: '', assists: '', steals: '', turnovers: '', fouls: '',
+        totalPoints: "", rebounds: "", assists: "", steals: "", turnovers: "", fouls: "",
       })
       setFormSuccess(true)
     }
@@ -69,19 +69,21 @@ export default function BasketballForm () {
 
   return (
     <Form size="large" id="Basketball" onSubmit={handleFormSubmit}>
-      <Segment stacked textAlign="left">
-      <Header as="h1">Basketball</Header>
-        <Form.Group width="equal">
-          <Form.Input label='Points' name='totalPoints' placeholder='0' type="number" min="0" value={formState.totalPoints} onChange={handleChange}/>
-          <Form.Input label='Rebounds' name='rebounds' placeholder='0' type="number" min="0" value={formState.rebounds} onChange={handleChange}/>
-          <Form.Input label='Assists' name='assists' placeholder='0' type="number" min="0" value={formState.assists} onChange={handleChange}/>
+      <Segment raised textAlign="left">
+        <Header as="h1">Basketball</Header>
+        <Form.Group widths="equal">
+          <Form.Input label="Points" placeholder="0" type="number" min="0" name="totalPoints" value={formState.totalPoints} onChange={handleChange} />
+          <Form.Input label="Rebounds" placeholder="0" type="number" min="0" name="rebounds" value={formState.rebounds} onChange={handleChange} />
         </Form.Group>
-        <Form.Group>
-          <Form.Input label='Steals' name='steals' placeholder='0' type="number" min="0" value={formState.steals} onChange={handleChange}/>
-          <Form.Input label='Turnovers' name='turnovers' placeholder='0' type="number" min="0" value={formState.turnovers} onChange={handleChange}/>
-          <Form.Input label='Fouls' name='fouls' placeholder='0' type="number" min="0" value={formState.fouls} onChange={handleChange}/>
+        <Form.Group widths="equal">
+          <Form.Input label="Assists" placeholder="0" type="number" min="0" name="assists" value={formState.assists} onChange={handleChange} />
+          <Form.Input label="Steals" placeholder="0" type="number" min="0" name="steals" value={formState.steals} onChange={handleChange} />
         </Form.Group>
-        <Button color="green" size="large">
+        <Form.Group widths="equal">
+          <Form.Input label="Turnovers" placeholder="0" type="number" min="0" name="turnovers" value={formState.turnovers} onChange={handleChange} />
+          <Form.Input label="Fouls" placeholder="0" type="number" min="0" name="fouls" value={formState.fouls} onChange={handleChange} />
+        </Form.Group>
+        <Button color="green" size="large" type="submit">
           Submit
         </Button>
         {formErrorFunc()}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   // Button,
   // Container,
@@ -15,10 +15,16 @@ import { QUERY_STATS } from '../utils/queries';
 
 export default function GlobalStats () {
 
-  const { loading:statsLoading, data:statsData } = useQuery(QUERY_STATS);
-  const stats = statsData?.stats || []
+  const { loading, data, refetch } = useQuery(QUERY_STATS);
+  const stats = data?.stats || []
 
-  if (statsLoading) {
+  useEffect(() => {
+    if(!loading) {
+      refetch();
+    }
+  }, []);
+
+  if (loading) {
     return <div>Loading...</div>;
   }
 

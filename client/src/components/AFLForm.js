@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Button,
   // Container,
@@ -9,16 +9,16 @@ import {
   Form,
   Message,
   // Select
-} from 'semantic-ui-react'
-import { useMutation, useQuery } from '@apollo/client';
-import { QUERY_SPORT } from '../utils/queries';
-import { ADD_NEWSTATS } from '../utils/mutations';
+} from "semantic-ui-react"
+import { useMutation, useQuery } from "@apollo/client";
+import { QUERY_SPORT } from "../utils/queries";
+import { ADD_NEWSTATS } from "../utils/mutations";
 
 // AFLForm, BasketballForm, and the CricketForm component are close to identical just with specific stats to each sport
 // Comments will just be in this file for them
 export default function AFLForm () {
   const [formState, setFormState] = useState({ 
-    goals: '', behinds: '', disposals: '', tackles: '', marks: '', kicks: '',
+    goals: "", behinds: "", disposals: "", tackles: "", marks: "", kicks: "",
   })
 
   const [formError, setFormError] = useState(false)
@@ -54,7 +54,7 @@ export default function AFLForm () {
         return
       }
       setFormState({
-        goals: '', behinds: '', disposals: '', tackles: '', marks: '', kicks: '',
+        goals: "", behinds: "", disposals: "", tackles: "", marks: "", kicks: "",
       })
       setFormSuccess(true)
     }
@@ -75,19 +75,21 @@ export default function AFLForm () {
 
   return (
     <Form size="large" id="AFL" onSubmit={handleFormSubmit}>
-      <Segment stacked textAlign="left">
-      <Header as="h1">AFL</Header>
-        <Form.Group width="equal">
-          <Form.Input label='Goals' placeholder='0' type="number" min="0" name='goals' value={formState.goals} onChange={handleChange}/>
-          <Form.Input label='Behinds' placeholder='0' type="number" min="0" name='behinds' value={formState.behinds} onChange={handleChange}/>
-          <Form.Input label='Disposals' placeholder='0' type="number" min="0" name='disposals' value={formState.disposals} onChange={handleChange}/>
+      <Segment raised textAlign="left">
+        <Header as="h1">AFL</Header>
+        <Form.Group widths="equal">
+          <Form.Input label="Goals" placeholder="0" type="number" min="0" name="goals" value={formState.goals} onChange={handleChange} />
+          <Form.Input label="Behinds" placeholder="0" type="number" min="0" name="behinds" value={formState.behinds} onChange={handleChange} />
         </Form.Group>
-        <Form.Group>
-          <Form.Input label='Tackles' placeholder='0' type="number" min="0" name='tackles' value={formState.tackles} onChange={handleChange}/>
-          <Form.Input label='Marks' placeholder='0' type="number" min="0" name='marks' value={formState.marks} onChange={handleChange}/>
-          <Form.Input label='Kicks' placeholder='0' type="number" min="0" name='kicks' value={formState.kicks} onChange={handleChange}/>
+        <Form.Group widths="equal">
+          <Form.Input label="Disposals" placeholder="0" type="number" min="0" name="disposals" value={formState.disposals} onChange={handleChange} />
+          <Form.Input label="Tackles" placeholder="0" type="number" min="0" name="tackles" value={formState.tackles} onChange={handleChange} />
         </Form.Group>
-        <Button color="green" size="large" type='submit'>
+        <Form.Group widths="equal">
+          <Form.Input label="Marks" placeholder="0" type="number" min="0" name="marks" value={formState.marks} onChange={handleChange} />
+          <Form.Input label="Kicks" placeholder="0" type="number" min="0" name="kicks" value={formState.kicks} onChange={handleChange} />
+        </Form.Group>
+        <Button color="green" size="large" type="submit">
           Submit
         </Button>
         {formErrorFunc()}

@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { QUERY_USER, QUERY_ME } from '../utils/queries';
+import { QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
 import BasketballForm from "../components/BasketballForm";
 import AFLForm from "../components/AFLForm";
 import CricketForm from "../components/CricketForm";
+import DashboardData from "../components/DashboardData";
+
 import {
     Button,
     // Container,
@@ -19,7 +21,8 @@ import {
   } from 'semantic-ui-react'
 
 export default function Dashboard() {
-    const [formType, setFormType] = useState('')
+
+    const [formType, setFormType] = useState('Basketball')
 
     // Changes the formType depending on the event
     const handleSportForm = (event) => {
@@ -28,13 +31,14 @@ export default function Dashboard() {
       setFormType(value)
     }
 
-  const { _id: userParam } = useParams();
-
-  const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-    variables: { _id: userParam },
-  });
-
-  const user = data?.me || data?.user || {};
+    const { loading, data, refetch } = useQuery(QUERY_ME);
+    const user = data?.me || [];
+  
+    useEffect(() => {
+      if(!loading) {
+        refetch();
+      }
+    }, [loading, refetch]);
 
   // If the user is not authenticated/logged in redirect to the login page
   if (!(Auth.loggedIn())) {
@@ -62,26 +66,18 @@ export default function Dashboard() {
 }
     
   return (
-      <Segment style={{ padding: "8em 0em", height: "100vh" }} vertical>
+      <Segment style={{ paddingTop: "8em", height: "100vh" }} vertical>
         <Grid container stackable verticalAlign="middle">
           <Grid.Row>
             <Grid.Column width={5} textAlign="center">
-              <Header as="h3" style={{ fontSize: "2em" }}>
-                Most recent sports
-              </Header>
-              <Segment>
-                {user.stats.toReversed().slice(0,6).map((stat) => (
-                     <p key={stat._id} style={{ fontSize: "1.33em" }}>
-                         {new Date(parseInt(stat.creationDate)).toLocaleDateString()} | {stat.sports.name}
-                    </p>
-                ))}
-              </Segment>
+              <DashboardData user={user} />
             </Grid.Column>
-            <Grid.Column floated="right" width={10} textAlign="center" style={{ padding: '4em 0em 0em 0em'}}>
+            <Grid.Column width={11} textAlign="center" style={{ padding: '4em 2em 0em 4em'}}>
                 <Grid textAlign="center" verticalAlign="middle">
                   <Grid.Column >
                       <Segment textAlign="center">
-                         <Button  color="orange" size="medium" value="Basketball" onClick={handleSportForm}>
+                        <Header as="h2">Please select a sport to enter your stats</Header>
+                        <Button  color="orange" size="medium" value="Basketball" onClick={handleSportForm}>
                           Basketball
                         </Button>
                         <Button  color="green" size="medium" value="AFL" onClick={handleSportForm}>

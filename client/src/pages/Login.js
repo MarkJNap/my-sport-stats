@@ -8,10 +8,14 @@ import {
   Form,
   Grid,
   Header,
-  // Image,
+  Image,
   Message,
   Segment,
 } from "semantic-ui-react";
+
+import appname from "../assets/AppNameLogo.png"
+import backgroundimg2 from "../assets/backgroundsports.png"
+
 // Base login/signup form layout from https://react.semantic-ui.com/layouts/login
 
 export default function Login() {
@@ -45,23 +49,21 @@ export default function Login() {
   };
 
   return (
-    <section className="">
-      <Grid
-        textAlign="center"
-        style={{ height: "90vh" }}
-        verticalAlign="middle">
+    <>
+      <Grid textAlign="center" style={{ height: "60vh", marginTop: "8em" }}>
         <Grid.Column style={{ maxWidth: 550, height: 500 }}>
+          <Image centered size="large" src={appname} />
           <Header as="h2" color="blue" textAlign="center">
             Login
           </Header>
-          <Message>
+          <Message color="yellow">
             Want to create an account? <Link to="/signup">Sign Up</Link>
           </Message>
           <Form size="large" onSubmit={handleFormSubmit}>
-          <Message hidden={!showAlert} color="red">
-          Please log in with a valid account!
-        </Message>
-            <Segment stacked textAlign="left">
+            <Message hidden={!showAlert} color="red">
+              Please log in with a valid account!
+            </Message>
+            <Segment raised textAlign="left">
               <Form.Input
                 fluid
                 label="Email"
@@ -91,6 +93,7 @@ export default function Login() {
           </Form>
         </Grid.Column>
       </Grid>
-    </section>
+      <Image centered size="massive" src={backgroundimg2} />
+    </>
   );
 }

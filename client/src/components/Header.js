@@ -7,26 +7,26 @@ import { Menu } from "semantic-ui-react";
 export default function Header() {
   return (
     // OPTION: fixed="top" to fix the header in place
-    <Menu size="massive" borderless fixed="top">
+    <Menu size="massive" borderless style={ {backgroundColor: "#242323" } }>
       <Menu.Item>
-        <Link to="/">MySportStats</Link>
+        <Link style={ {color: "white"} } to="/">MySportStats</Link>
       </Menu.Item>
       <Menu.Menu position="right">
         {Auth.loggedIn() ? (
           <>
-            <Menu.Item>
-              <Link to="/stats">Stats</Link>
+            <Menu.Item >
+              <Link style={ {color: "white"} } to="/stats">Stats</Link>
             </Menu.Item>
             <Menu.Item>
-              <Link to="/dashboard">Dashboard</Link>
+              <Link style={ {color: "white"} } to="/dashboard">Dashboard</Link>
             </Menu.Item>
             <Menu.Item as={"li"} onClick={Auth.logout}>
-              <Link to="/">Logout</Link>
+              <Link style={ {color: "white"} } to="/">Logout</Link>
             </Menu.Item>
           </>
         ) : (
-          <Menu.Item>
-            <Link to="/login">Login</Link>
+          <Menu.Item >
+            <Link style={ {color: "white"} } to="/login">Login</Link>
           </Menu.Item>
         )}
       </Menu.Menu>

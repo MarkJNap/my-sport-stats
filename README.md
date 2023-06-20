@@ -9,7 +9,6 @@ My Sport Stats is for athletes trying to improve thier performance by tracking t
 
 This application is deployed at heroku:
 https://vast-reaches-36885.herokuapp.com/
-`NOTE: Currently needs to be manually refreshed to see new data.`
 
 ## Usage
 
@@ -17,6 +16,7 @@ This site is nice and simple for a user. They need to just create a new account 
 
 
 Demo Gif:
+
 ![Demo Gif](client/src/assets/MySportStatsDemo.gif)
 
 ## Future Development

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Button,
   Header,
@@ -18,10 +18,13 @@ import { DELETE_STATS } from '../utils/mutations'
 
 export default function PersonalStats () {
 
-  const { loading, data } = useQuery(QUERY_ME);
-  // console.log(loading);
-  // console.log(QueryError);
-  // console.log(data);
+  const { loading, data, refetch } = useQuery(QUERY_ME);
+
+  useEffect(() => {
+    if(!loading) {
+      refetch();
+    }
+  }, []);
 
   const [deleteStat] = useMutation(DELETE_STATS);
 

@@ -1,29 +1,28 @@
-import React from 'react';
+import React from "react";
 import {
-    Container,
-    // Image,
-    List,
-    Segment,
-  } from 'semantic-ui-react'
+  Container,
+  List,
+  Segment,
+  Icon
+} from "semantic-ui-react"
 // Base footer design from https://react.semantic-ui.com/layouts/fixed-menu/
 
 export default function Footer() {
-    return (
-        <Segment vertical style={{ margin: '3em 0em 0em', padding: '2em 0em' }}>
-        <Container textAlign='center'>
-          {/* <Image centered size='mini' src='/logo.png' /> */}
-          <List horizontal divided link size='large'>
-            <List.Item>
-              Made by Mark Napolitano
-            </List.Item>
-            <List.Item as='a' href='https://github.com/MarkJNap/project-3' target="_blank">
+  return (
+    <Segment vertical style={{ marginTop: "2em", paddingTop: "2em", background: "#8A8A8A" }}>
+      <Container textAlign="center">
+        <List horizontal divided link size="large">
+          <List.Item style={{ color: "white", fontSize: "19px" }} as="a" href="https://www.linkedin.com/in/mark-napolitano/" target="_blank"><Icon fitted color="black" name="linkedin" />
+            Made by Mark Napolitano
+          </List.Item>
+          <List.Item style={{ color: "white", fontSize: "19px" }} as="a" href="https://github.com/MarkJNap/my-sport-stats" target="_blank"><Icon fitted color="black" name="github" />
             Github
-            </List.Item>
-            <List.Item as='a' href='mailto:156marknap@gmail.com'>
+          </List.Item>
+          <List.Item style={{ color: "white", fontSize: "19px" }} as="a" href="mailto:156marknap@gmail.com"><Icon fitted color="black" name="mail" />
             Contact Me
-            </List.Item>
-          </List>
-        </Container>
-      </Segment>
-    )
+          </List.Item>
+        </List>
+      </Container>
+    </Segment>
+  )
 }
