@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../utils/mutations';
-import Auth from '../utils/auth';
+import { useMutation } from "@apollo/client";
+import { ADD_USER } from "../utils/mutations";
+import Auth from "../utils/auth";
 import {
   Button,
   Form,
@@ -12,17 +12,16 @@ import {
   Message,
   Segment,
 } from "semantic-ui-react";
-
-import appname from "../assets/AppNameLogo.png"
-import backgroundimg2 from "../assets/backgroundsports.png"
+import appImg from "../assets/AppTitle.png"
+import backgroundImg from "../assets/BackgroundSports.png"
 
 // Base login/signup form layout from https://react.semantic-ui.com/layouts/login
 
 export default function Signup() {
-  const [formState, setFormState] = useState({ username: '', email: '', password: ''})
+  const [formState, setFormState] = useState({ username: "", email: "", password: ""})
   const [addUser] = useMutation(ADD_USER);
 
-  // TODO: Add client side validation
+  // TODO: Add validation checks
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -35,9 +34,9 @@ export default function Signup() {
       console.error(e);
     }
     setFormState({
-      username: '',
-      email: '',
-      password: '',
+      username: "",
+      email: "",
+      password: "",
     });
   }
 
@@ -50,7 +49,7 @@ export default function Signup() {
     <>
       <Grid textAlign="center" style={{ height: "60vh", marginTop: "8em" }}>
         <Grid.Column style={{ maxWidth: 550, height: 500 }}>
-        <Image centered size="large" src={appname} />
+        <Image centered size="large" src={appImg} />
           <Header as="h2" color="blue" textAlign="center">
             Create an account
           </Header>
@@ -96,7 +95,7 @@ export default function Signup() {
           </Form>
         </Grid.Column>
       </Grid>
-      <Image centered size="massive" src={backgroundimg2} />
+      <Image centered size="massive" src={backgroundImg} />
     </>
   );
 }

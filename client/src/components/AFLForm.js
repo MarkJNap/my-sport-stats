@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 import {
   Button,
-  // Container,
-  // Grid,
   Header,
-  // Image,
   Segment,
   Form,
   Message,
-  // Select
 } from "semantic-ui-react"
 import { useMutation, useQuery } from "@apollo/client";
 import { QUERY_SPORT } from "../utils/queries";

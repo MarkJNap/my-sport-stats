@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
   ApolloClient,
@@ -7,7 +7,6 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import './App.css';
 
 import Dashboard from "./pages/Dashboard";
 import Landing from "./pages/Landing";
@@ -16,7 +15,6 @@ import Login from "./pages/Login";
 import Stats from "./pages/Stats";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-
 
 const httpLink = createHttpLink({
   uri: "/graphql",

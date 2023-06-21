@@ -6,7 +6,6 @@ import { Menu } from "semantic-ui-react";
 
 export default function Header() {
   return (
-    // OPTION: fixed="top" to fix the header in place
     <Menu size="massive" borderless style={ {backgroundColor: "#242323" } }>
       <Menu.Item>
         <Link style={ {color: "white"} } to="/">MySportStats</Link>

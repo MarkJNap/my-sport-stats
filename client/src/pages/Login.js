@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations';
-import Auth from '../utils/auth';
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER } from "../utils/mutations";
+import Auth from "../utils/auth";
 import {
   Button,
   Form,
@@ -12,14 +12,13 @@ import {
   Message,
   Segment,
 } from "semantic-ui-react";
-
-import appname from "../assets/AppNameLogo.png"
-import backgroundimg2 from "../assets/backgroundsports.png"
+import appImg from "../assets/AppTitle.png"
+import backgroundImg from "../assets/BackgroundSports.png"
 
 // Base login/signup form layout from https://react.semantic-ui.com/layouts/login
 
 export default function Login() {
-  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [formState, setFormState] = useState({ email: "", password: "" });
   const [showAlert, setShowAlert] = useState(false);
   const [login] = useMutation(LOGIN_USER);
 
@@ -36,9 +35,9 @@ export default function Login() {
       setShowAlert(true)
     }
     setFormState({
-      username: '',
-      email: '',
-      password: '',
+      username: "",
+      email: "",
+      password: "",
     });
   };
 
@@ -52,7 +51,7 @@ export default function Login() {
     <>
       <Grid textAlign="center" style={{ height: "60vh", marginTop: "8em" }}>
         <Grid.Column style={{ maxWidth: 550, height: 500 }}>
-          <Image centered size="large" src={appname} />
+          <Image centered size="large" src={appImg} />
           <Header as="h2" color="blue" textAlign="center">
             Login
           </Header>
@@ -93,7 +92,7 @@ export default function Login() {
           </Form>
         </Grid.Column>
       </Grid>
-      <Image centered size="massive" src={backgroundimg2} />
+      <Image centered size="massive" src={backgroundImg} />
     </>
   );
 }

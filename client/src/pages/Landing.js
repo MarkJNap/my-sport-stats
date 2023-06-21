@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
 import {
@@ -8,17 +8,13 @@ import {
     Header,
     Image,
     Segment,
-    Icon,
-  } from 'semantic-ui-react'
-
-import { useQuery } from '@apollo/client';
-import { QUERY_STATS } from '../utils/queries';
-
-// import bballimg from "../assets/basketball.jpg"
-import bballcourtimg from "../assets/basketball-court.jpg"
-import cricketimg from "../assets/cricketimg.jpg"
-import appname from "../assets/AppNameLogo.png"
-
+    // Icon,
+  } from "semantic-ui-react"
+import { useQuery } from "@apollo/client";
+import { QUERY_STATS } from "../utils/queries";
+import bballCourtImg from "../assets/BasketballCourt.jpg"
+import cricketImg from "../assets/CricketPlayer.jpg"
+import appImg from "../assets/AppTitle.png"
 
 // Base layout from https://react.semantic-ui.com/layouts/homepage/
 // Images "https://www.freepik.com/free-photo/basketball-hardwood-court-floor_8364601.htm#query=basketball&position=8&from_view=search&track=sph" Image by master1305 on Freepik
@@ -40,7 +36,7 @@ export default function Landing() {
       return (
         <>
           {stats.toReversed().slice(0, 5).map((stat) => (
-            <Segment color='red' key={stat._id} style={{ fontSize: "1.5em", borderColor: "red" }}>
+            <Segment color="red" key={stat._id} style={{ fontSize: "1.5em", borderColor: "red", borderWidth:  "4px" }}>
               {new Date(parseInt(stat.creationDate)).toLocaleDateString()} | {stat.sports.name} | {stat.userId.username} <br></br>
               {stat.sports.name === "Basketball" ? (<> {basketballStats(stat)}</>) : (<></>)}
               {stat.sports.name === "AFL" ? (<> {aflStats(stat)}</>) : (<></>)}
@@ -88,12 +84,12 @@ export default function Landing() {
 
   return (
     <>
-      <Segment style={{ minHeight: "100vh", padding: '3em 0em 0em 0em' }} vertical>
+      <Segment style={{ minHeight: "100vh", padding: "3em 0em 0em 0em" }} vertical>
         <Grid container stackable>
           <Grid.Row>
-            <Grid.Column width={8} textAlign='center' style={{ padding: "0em 2em 0em 0em "}}>
-              <Image centered size="large" src={appname} />
-              <Header as='h3' style={{ fontSize: '2.5em', marginTop: "2em", textDecoration: "underline" }}>
+            <Grid.Column width={8} textAlign="center" style={{ padding: "0em 2em 0em 0em "}}>
+              <Image centered size="large" src={appImg} />
+              <Header as="h3" style={{ fontSize: "2.5em", marginTop: "2em", textDecoration: "underline" }}>
                 See our users latest updates!
               </Header>
               <Segment basic style={{ borderColor: "black" }}>
@@ -109,25 +105,25 @@ export default function Landing() {
               </Segment>
 
             </Grid.Column>
-            <Grid.Column width={8} textAlign='center'>
-              <Image rounded centered size='massive' src={bballcourtimg} />
-              <Header as='h3' style={{ fontSize: '2em' }}>
-                We've made stat tracking straight forward
+            <Grid.Column width={8} textAlign="center">
+              <Image rounded centered size="massive" src={bballCourtImg} />
+              <Header as="h3" style={{ fontSize: "2em" }}>
+                We"ve made stat tracking straight forward
               </Header>
-              <p style={{ fontSize: '1.33em' }} >
+              <p style={{ fontSize: "1.33em" }} >
                 With the ability to track your statistics you can break down easily how best to improve and hit your goals.<br></br>
                 Using our technology users can even view their friends stats to compete for the top scores. 
               </p>
               {Auth.loggedIn() ? (
-                <Grid.Column style={{ padding: '2em 0em' }} textAlign='center'>
-                  <Link to="/dashboard"><Button size='huge' color='blue'>View your Profile</Button></Link>
+                <Grid.Column style={{ padding: "2em 0em" }} textAlign="center">
+                  <Link to="/dashboard"><Button size="huge" color="blue">View your Profile</Button></Link>
                 </Grid.Column>
               ) : (
-                <Grid.Column style={{ padding: '1em 0em' }} textAlign='center'>
-                  <Link to="/signup"><Button size='huge' color='green'>Sign Up Now!</Button></Link>
+                <Grid.Column style={{ padding: "1em 0em" }} textAlign="center">
+                  <Link to="/signup"><Button size="huge" color="green">Sign Up Now!</Button></Link>
                 </Grid.Column>
               )}
-              <Image rounded centered size='large' src={cricketimg} />
+              <Image rounded centered size="large" src={cricketImg} />
             </Grid.Column>
           </Grid.Row>
         </Grid>
